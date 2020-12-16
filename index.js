@@ -8,7 +8,7 @@
 */
 
 // EXAMPLE SOLUTION CODE:
-function Airplane(name) {
+function Airplane(name) { // Write an Airplane constructor that initializes `name from an argument.`
     this.name = name;
     this.isFlying = false;
   }
@@ -21,6 +21,7 @@ function Airplane(name) {
   
   
   /*
+  // 👇 COMPLETE YOUR WORK BELOW 👇
   // 👇 COMPLETE YOUR WORK BELOW 👇
   // 👇 COMPLETE YOUR WORK BELOW 👇
   // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -37,16 +38,29 @@ function Airplane(name) {
           + When an instance poops, its `stomach` should empty.
       - Give instances of Person a method `.toString()`:
           + It should return a string with `name` and `age`. Example: "Mary, 50"
+
+  Brit explains this at 01:45:00 : https://lambdaschool.instructure.com/courses/601/pages/module-3-class-recordings?module_item_id=529079
   */
   
- function Person() {
-    
+ function Person(name,age) { //Write a Person Constructor that initializes `name` and `age` from arguments.
+    this.name = name;
+    this.age = age;
+    this.stomach = []; //All instances of Person should initialize with an empty `stomach` array.
   }
- 
- 
+ Person.prototype.eat = function(edible){ //Give instances of Person the ability to `.eat("someFood")`
+   if(this.stomach.length <10){ // The `eat` method should have no effect if there are 10 items in the `stomach`.
+     this.stomach.push(edible) //When eating an edible, it should be pushed into the `stomach`
+   }
+ }
+ Person.prototype.poop = function(){ //Give instances of Person the ability to `.poop()`:
+   this.stomach = []; //When an instance poops, its `stomach` should empty.
+ }
+Person.prototype.toString = function(){ //Give instances of Person a method `.toString()`
+  return `${this.name}, ${this.age}`;
+}
+const personOne = new Person("Mary", 50); //It should return a string with `name` and `age`. Example: "Mary, 50"
 
-  
-  
+console.log(personOne.toString());
   
   
   /*
@@ -63,10 +77,15 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model,milesPerGallon) { //Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0; //should initialize with an `tank` at 0
+  this.odometer = 0; //should initialize with an `odometer` at 0
+}
+  Car.prototype.fill = function (gallons) { //Give cars the ability to get fueled with a `.fill(gallons)` method.
+    this.tank += gallons; //Add the gallons to `tank`.
   }
-  
   
   /*
     TASK 3
@@ -75,18 +94,24 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) { // Write a Baby constructor. Besides `name` and `age`, Baby takes a third argument to initialize `favoriteToy`
+   this.name = name; 
+   this.age = age; 
+   this.favoriteToy = favoriteToy; 
   }
+ Baby.prototype = Object.create(Person.prototype) //Baby constructor subclassing Person
  
+ Baby.prototype.play = function (){ // babies have the ability to `.play()`
+  return `Playing with ${this.favoriteToy}.`; // Should return a string "Playing with x", x being the favorite toy.
+ };
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1.Simple | global object in non-strict mode. undefined in strict mode.
+    2.Implicit | is whatever is left of the period. 
+    3.Explicit | when Javascript sets 'this' to a value of call apply or bind
+    4.New | When a constructor is used to make a object
   */
   
   
