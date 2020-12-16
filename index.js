@@ -8,7 +8,7 @@
 */
 
 // EXAMPLE SOLUTION CODE:
-function Airplane(name) {
+function Airplane(name) { // Write an Airplane constructor that initializes `name from an argument.`
     this.name = name;
     this.isFlying = false;
   }
@@ -39,14 +39,25 @@ function Airplane(name) {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- function Person() {
-    
+ function Person(name,age) { //Write a Person Constructor that initializes `name` and `age` from arguments.
+    this.name = name;
+    this.age = age;
+    this.stomach = []; //All instances of Person should initialize with an empty `stomach` array.
   }
- 
- 
+ Person.prototype.eat = function(edible){ //Give instances of Person the ability to `.eat("someFood")`
+   if(this.stomach.length <10){ // The `eat` method should have no effect if there are 10 items in the `stomach`.
+     this.stomach.push(edible) //When eating an edible, it should be pushed into the `stomach`
+   }
+ }
+ Person.prototype.poop = function(){ //Give instances of Person the ability to `.poop()`:
+   this.stomach = []; //When an instance poops, its `stomach` should empty.
+ }
+Person.prototype.toString = function(){ //Give instances of Person a method `.toString()`
+  return `${this.name}, ${this.age}`;
+}
+const personOne = new Person("Mary", 50); //It should return a string with `name` and `age`. Example: "Mary, 50"
 
-  
-  
+console.log(personOne.toString());
   
   
   /*
