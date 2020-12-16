@@ -37,6 +37,8 @@ function Airplane(name) { // Write an Airplane constructor that initializes `nam
           + When an instance poops, its `stomach` should empty.
       - Give instances of Person a method `.toString()`:
           + It should return a string with `name` and `age`. Example: "Mary, 50"
+
+  Brit explains this at 01:45:00 : https://lambdaschool.instructure.com/courses/601/pages/module-3-class-recordings?module_item_id=529079
   */
   
  function Person(name,age) { //Write a Person Constructor that initializes `name` and `age` from arguments.
@@ -74,10 +76,15 @@ console.log(personOne.toString());
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model,milesPerGallon) { //Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0; //should initialize with an `tank` at 0
+  this.odometer = 0; //should initialize with an `odometer` at 0
+}
+  Car.prototype.fill = function (gallons) { //Give cars the ability to get fueled with a `.fill(gallons)` method.
+    this.tank += gallons; //Add the gallons to `tank`.
   }
-  
   
   /*
     TASK 3
@@ -86,10 +93,16 @@ console.log(personOne.toString());
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) { // Write a Baby constructor. Besides `name` and `age`, Baby takes a third argument to initialize `favoriteToy`
+   this.name = name; 
+   this.age = age; 
+   this.favoriteToy = favoriteToy; 
   }
+ Baby.prototype = Object.create(Person.prototype) //Baby constructor subclassing Person
  
+ Baby.prototype.play = function (){ // babies have the ability to `.play()`
+  return `Playing with ${this.favoriteToy}.`; // Should return a string "Playing with x", x being the favorite toy.
+ };
   
   /* 
     TASK 4
