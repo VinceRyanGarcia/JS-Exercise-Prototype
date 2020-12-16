@@ -107,10 +107,10 @@ console.log(personOne.toString());
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1.Simple | global object in non-strict mode. undefined in strict mode.
+    2.Implicit | is whatever is left of the period. 
+    3.Explicit | when Javascript sets 'this' to a value of call apply or bind
+    4.New | When a constructor is used to make a object
   */
   
   
